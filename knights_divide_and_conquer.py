@@ -2,7 +2,6 @@
 Knight's Problem divide and conquer algorithm
 """
 import math
-0
 def lookUp(n,m):
 	'''
 	takes a dimensions (n,m) and returns a solved matrix of the same size

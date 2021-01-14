@@ -224,7 +224,12 @@ closed_8_8 = [[1,16,41,22,3,18,43,48],
 [13,60,27,34,11,8,29,32],
 [26,35,12,59,28,33,10,7]]
 
-base_cases = {(3,10):[closed_3_10,None,None],
+streched_3_8 = [[1,4,7,22,19,16,13,10],
+[24,21,2,5,8,11,18,15],
+[3,4,23,20,17,14,9,12]]
+
+base_cases = {(3,8):[None,streched_3_8,None]
+(3,10):[closed_3_10,None,None],
               (3,12):[closed_3_12,None,None],
               (5,6):[closed_5_6,None,None],
               (6,5):[None,stretched_6_5,None],

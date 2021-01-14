@@ -35,7 +35,7 @@ class Board(object):
 
 		self.forward_links+=B.forward_links
 		self.backward_links=(B.backward_links)+self.backward_links
-		
+
 		self.forward_links.append(((0,self.cols-2),(B.endPos[0], B.endPos[1]+self.cols)))
 		self.backward_links.append(((B.startPos[0],B.startPos[1]+self.cols),(2,self.cols-1)))
 		
@@ -100,7 +100,7 @@ b4 = Board(3,4,(0,0),(1,0),three_by_five2)
 #print(b1==b3)
 # b1.quad_link(b2,b3,b4)
 
-b1.quad_link(b2,b3,b4)
+#b1.quad_link(b2,b3,b4)
 #print(b1)
 # print(b3)
 # print(b1.forward_links)

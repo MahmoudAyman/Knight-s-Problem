@@ -24,10 +24,11 @@ def lookUp(n,m, mode):
 		else:
 			print("mode is undefined")
 			return None
+		#print(data)
 		start=(0,0)
 		end=(0,0)
-		for i in range(0,n):
-			for j in range(0,m):
+		for i in range(0,n-1):
+			for j in range(0,m-1):
 				if (data[i][j] == 1):
 					start=(i,j)
 					pass
@@ -73,8 +74,7 @@ def solveBoard(n,m):
 
 
 
-temp = lookUp(4,5)
-print(temp)
+temp = lookUp(4,5,'s')
 # if __name__ == "__main__":
 
 # 	n = int(input("Enter value of n: "))

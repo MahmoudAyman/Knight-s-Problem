@@ -6,12 +6,36 @@ from baseCases import *
 import math
 		
 
-def lookUp(n,m):
+def lookUp(n,m, mode):
 	'''
 	takes a dimensions (n,m) and returns a solveBoardd matrix of the same size
 	returns nxm matrix
 	'''
-	pass
+	if not((n,m) in base_cases.keys()):
+		print("Solution not found")
+		return None
+	else:
+		if (mode=='c'):
+			data = base_cases[(n,m)][0]
+		elif (mode=='s'):
+			data = base_cases[(n,m)][1]
+		elif (mode=='d'):
+			data = base_cases[(n,m)][2]
+		else:
+			print("mode is undefined")
+			return None
+		start=(0,0)
+		end=(0,0)
+		for i in range(0,n):
+			for j in range(0,m):
+				if (data[i][j] == 1):
+					start=(i,j)
+					pass
+				elif (data[i][j]==(n*m)):
+					end=(i,j)
+					pass
+
+		return (Board(n,m,start,end,data))
 
 
 def solveBoard(n,m):
@@ -49,11 +73,12 @@ def solveBoard(n,m):
 
 
 
+temp = lookUp(4,5)
+print(temp)
+# if __name__ == "__main__":
 
-if __name__ == "__main__":
+# 	n = int(input("Enter value of n: "))
+# 	m = int(input("Enter value of m: "))
 
-	n = int(input("Enter value of n: "))
-	m = int(input("Enter value of m: "))
-
-	solution  = solveBoard(n,m)
-	print (solution)
+# 	solution  = solveBoard(n,m)
+# 	print (solution)

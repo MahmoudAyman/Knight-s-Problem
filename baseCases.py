@@ -1,4 +1,23 @@
 # Knight-s-Problem
+
+#dictionary for base cases lookup
+#key: tuple (n,m)
+#value: (closed_matrix, stretched_matrix, double_matrix)
+base_cases = {(3,10):[3x10closed,None,None]
+              (3,12):[3x12closed,None,None]
+              (5,6):[5x6closed,5x6streched,None]
+              (4,5):[None,4x5streched,4x5double]
+              (10,10):[None,10x10streched,None]
+              (3,4):[None,3x4streched,None]
+              (5,6):[5x6closed,5x6streched,None]
+              (5,8):[None,5x8streched,None]
+              (5,10):[None,5x10streched,None]
+              (6,6):[None,6x6streched,None]
+              (6,8):[None,6x8streched,None]
+              (6,10):[None,6x10streched,None]
+              (7,6):[None,7x6streched,None]
+              (10,8):[None,10x8streched,None]
+              }
 3x10closed = [[1, 28, 25, 18, 5, 20, 23, 14, 11, 8],
 [26, 17, 30, 3, 24, 15, 6, 9, 22, 13],
 [29, 2, 27, 16, 19, 4, 21, 12, 7, 10]]

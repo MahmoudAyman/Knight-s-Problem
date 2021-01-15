@@ -25,10 +25,10 @@ def lookUp(n,m, mode):
 			print("mode is undefined")
 			return None
 		#print(data)
-		start=(0,0)
+		start=(-1,-1)
 		end=(0,0)
-		for i in range(0,n-1):
-			for j in range(0,m-1):
+		for i in range(0,n):
+			for j in range(0,m):
 				if (data[i][j] == 1):
 					start=(i,j)
 					pass
@@ -74,20 +74,29 @@ def solveBoard(n,m):
 	#CASE3
 	elif ((n==4) and (m>10)):
 		k = ((m-6)%5) + 6
-		aux_matrix=lookUp(4,5,'s')
+		aux_matrix=lookUp(4,5,'d')
+		#print(aux_matrix)
 		if(aux_matrix==None):
 			print("Solution not found")
 			return None
 		else:
 			for i in range(1,(m-k)/5):
-				temp = lookUp(4,5,'s')
+				temp = lookUp(4,5,'d')
 				aux_matrix.two_link(temp)
+			# print("k", k)
+			# print(aux_matrix)
+			# print(aux_matrix.forward_links)
+			# print(aux_matrix.backward_links)
+			# print(aux_matrix.rows,aux_matrix.cols)
 			temp2=solveBoard(4,k)
 			#print(temp2)
 			if (temp2==None):
 				print("solution not found")
 				return None
 			else:
+				#print(temp2)
+				# print(temp2.startPos)
+				#print(temp2.endPos)
 				temp2.two_link(aux_matrix)
 				return temp2
 	#CASE4
@@ -123,9 +132,11 @@ def solveBoard(n,m):
 		return first_quad
 
 
-sol = solveBoard(4,12)
+sol = solveBoard(4,17)
 print(sol)
 print(sol.forward_links)
+print(sol.backward_links)
+print(sol.startPos, sol.endPos)
 # print(sol.forward_links)
 # print(sol.backward_links)
 # print(sol.backward_links)

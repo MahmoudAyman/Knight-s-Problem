@@ -30,18 +30,6 @@ class Board(object):
 		#print("two_link")
 		#print(str(self.index), str(B.index))
 		#print(self.index,B.index)
-		if(B.rows==4):
-			if ((B.cols%5)==0):
-				if (((B.cols/5)%2) == 1):
-					self.forward_links.append([1,self.cols-1,B.endPos[0],B.endPos[1]+self.cols])
-					self.forward_links.append([2,self.cols-1,B.endPos[0]+3,B.endPos[1]+self.cols])
-
-					self.backward_links.append([B.startPos[0]+1,B.startPos[1]],self.rows-1,self.cols-2)
-					self.backward_links.append([B.startPos[0],B.startPos[1]+self.cols,0,self.cols-2])
-				else:
-					
-
-
 
 		if (self.rows != B.rows):
 			print("two link is invalid")
@@ -51,12 +39,24 @@ class Board(object):
 			# print(B)
 			return None
 
-		
+		if(B.rows==4):
+			if ((self.cols%5)==0):
+				self.forward_links.append([1,self.cols-1,B.endPos[0],B.endPos[1]+self.cols])
+				self.forward_links.append([2,self.cols-1,B.endPos[0]+3,B.endPos[1]+self.cols])
 
-		#self.forward_links.append(((0,self.cols-2),(B.endPos[0], B.endPos[1]+self.cols)))
-		self.forward_links.append([0,self.cols-2,B.endPos[0], B.endPos[1]+self.cols])
-		#self.backward_links.append(((B.startPos[0],B.startPos[1]+self.cols),(2,self.cols-1)))
-		self.backward_links.append([B.startPos[0],B.startPos[1]+self.cols,2,self.cols-1])
+				self.backward_links.append([B.startPos[0]+1,B.startPos[1]+self.cols,self.rows-1,self.cols-2])
+				self.backward_links.append([B.startPos[0],B.startPos[1]+self.cols,0,self.cols-2])
+			else:
+				# print("innn")
+				# print(self.startPos)
+				self.forward_links.append([self.startPos[0],self.startPos[1],B.startPos[0]+1,B.startPos[1]+self.cols])
+				self.backward_links.append([B.startPos[0],B.startPos[1]+self.cols,self.endPos[0],self.endPos[1]])
+
+		else :
+			#self.forward_links.append(((0,self.cols-2),(B.endPos[0], B.endPos[1]+self.cols)))
+			self.forward_links.append([0,self.cols-2,B.endPos[0], B.endPos[1]+self.cols])
+			#self.backward_links.append(((B.startPos[0],B.startPos[1]+self.cols),(2,self.cols-1)))
+			self.backward_links.append([B.startPos[0],B.startPos[1]+self.cols,2,self.cols-1])
 
 		for i in B.forward_links:
 			i[1]+=self.cols
@@ -105,7 +105,12 @@ class Board(object):
 
 	def __str__(self):
 		out=""
+		# out+=str([i for i in range(0,self.cols)])
+		# out+=("\n")
+		# out+=str(["=" for i in range(0,self.cols)])
+		# out+=("\n")
 		for i in range(self.rows):
+			#out+=str(i)+": "
 			out+=str(self.dataMatrix[i])
 			out+=("\n")
 		return out

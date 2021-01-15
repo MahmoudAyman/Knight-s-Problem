@@ -83,6 +83,7 @@ def solveBoard(n,m):
 				temp = lookUp(4,5,'s')
 				aux_matrix.two_link(temp)
 			temp2=solveBoard(4,k)
+			print(temp2)
 			if (temp2==None):
 				print("solution not found")
 				return None
@@ -122,10 +123,10 @@ def solveBoard(n,m):
 		return first_quad
 
 
-sol = solveBoard(3,16)
+sol = solveBoard(4,12)
 print(sol)
-print(sol.forward_links)
-print(sol.backward_links)
+# print(sol.forward_links)
+# print(sol.backward_links)
 # print(sol.backward_links)
 # temp = lookUp(4,5,'s')
 # print(temp)

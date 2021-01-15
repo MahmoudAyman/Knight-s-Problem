@@ -61,20 +61,33 @@ def solveBoard(n,m):
 			return None
 		else:
 			for i in range(1,(m-k)/4):
-				aux_matrix.two_link(lookUp(3,4,'s'))
-			temp = solveBoard(3,k)
-			if (temp==None):
+				temp = lookUp(3,4,'s')
+				aux_matrix.two_link(temp)
+			temp2 = solveBoard(3,k)
+			if (temp2==None):
 				print("solution not found")
 				return None
 			else:
-				return ((temp.two_link(aux_matrix)))
+				temp2.two_link(aux_matrix)
+				return temp2
 
 	elif ((n==4) and (m>10)):
 		k = ((m-6)%5) + 6
 		aux_matrix=lookUp(4,5,'s')
-		for i in range(1,(m-k)/5):
-			aux_matrix = combine(aux_matrix, lookUp(4,5,'s'))
-		return (combine(solveBoard(4,k),aux_matrix))
+		if(aux_matrix==None):
+			print("Solution not found")
+			return None
+		else:
+			for i in range(1,(m-k)/5):
+				temp = lookUp(4,5,'s')
+				aux_matrix.two_link(temp)
+			temp2=solveBoard(4,k)
+			if (temp2==None):
+				print("solution not found")
+				return None
+			else:
+				temp2.two_link(aux_matrix)
+				return temp2
 
 	elif ((5<=n<=10) and (m>10)):
 		m1 = (math.floor(m/4)*2)+(m%2)
@@ -88,8 +101,11 @@ def solveBoard(n,m):
 		return (combine(combine(solveBoard(n1,m1), solveBoard(n1,m2)), combine(solveBoard(n2,m1),solveBoard(n2,m2))))
 
 
-sol = solveBoard(3,8)
+sol = solveBoard(3,16)
 print(sol)
+print(sol.forward_links)
+print(sol.backward_links)
+# print(sol.backward_links)
 # temp = lookUp(4,5,'s')
 # print(temp)
 # print(temp.endPos)

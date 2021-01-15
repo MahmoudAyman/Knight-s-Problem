@@ -68,30 +68,25 @@ class Board(object):
 			print("quad_link is invalid")
 			return None
 		self.two_link(B)
-		#print(self.dataMatrix)
-		#print(self.dataMatrix)
 		C.two_link(D)
-		# print("b1")
-		# print(self)
-		# print("b3")
-		# print(C)
-		self.forward_links+=C.forward_links
-		self.backward_links=(C.backward_links)+self.backward_links
+		
 		self.forward_links.append(((self.rows-2,0),(C.endPos[0]+self.rows,C.endPos[1])))
 		self.backward_links.append(((C.endPos[0]+self.rows,C.endPos[1]),(self.rows -1,2)))
-		self.cols+=C.cols
+
+		for i in C.forward_links:
+			i[0]+=self.rows
+			i[2]+=self.rows
+		for i in C.backward_links:
+			i[0]+=self.rows
+			i[2]+=self.rows
+
+		self.forward_links+=C.forward_links
+		self.backward_links=(C.backward_links)+self.backward_links
 		
 		for i in C.dataMatrix:
 			#print (i)
 			self.dataMatrix.append(i)
-		print(self)
-		print(self.forward_links)
-		print(self.backward_links)
-
-		# print("b1")
-		# print(self)
-		# print("b3")
-		# print(C)
+		self.row+=C.rows
 
 
 

@@ -44,6 +44,7 @@ def solveBoard(n,m):
 	takes dimensions (n, m) and returns a knight's tour on a board of size n*m
 	returns: matrix
 	'''
+	#CASE1
 	if ((n<=10) and (m<=10)):
 		temp = lookUp(n,m,'s')
 		if (temp==None):
@@ -51,7 +52,7 @@ def solveBoard(n,m):
 			return None
 		else:
 			return temp
-	
+	#CASE2
 	elif ((n==3) and (m>10)):
 		k = ((m-7)%4) + 7
 		#print(k)
@@ -70,7 +71,7 @@ def solveBoard(n,m):
 			else:
 				temp2.two_link(aux_matrix)
 				return temp2
-
+	#CASE3
 	elif ((n==4) and (m>10)):
 		k = ((m-6)%5) + 6
 		aux_matrix=lookUp(4,5,'s')
@@ -88,17 +89,37 @@ def solveBoard(n,m):
 			else:
 				temp2.two_link(aux_matrix)
 				return temp2
-
+	#CASE4
 	elif ((5<=n<=10) and (m>10)):
 		m1 = (math.floor(m/4)*2)+(m%2)
 		m2 = m-m1
-		return (combine(solveBoard(n,m1), solveBoard(n,m2)))
+		temp1 = solveBoard(n,m1)
+		temp2 = solveBoard(n,m2)
+		if ((temp1==None) or (temp2==None)):
+			print("solution not found")
+			return None
+		else:
+			out = temp1.two_link(temp2)
+			if (out==None):
+				print("solution not found")
+				return None
+			else:
+				return out
+	#CASE5
 	elif ((5>10) and (m>10)):
-		n1 = (math.floor(n/4)*2)+(n%2)
-		n2 = n-n1
-		m1 = (math.floor(m/4)*2)+(m%2)
-		m2 = m-m1
-		return (combine(combine(solveBoard(n1,m1), solveBoard(n1,m2)), combine(solveBoard(n2,m1),solveBoard(n2,m2))))
+		n2 = (math.floor(n/4)*2)+(n%2)
+		n1 = n-n1
+		m2 = (math.floor(m/4)*2)+(m%2)
+		m1 = m-m1
+		first_quad = solveBoard(n1,m1)
+		second_quad = solveBoard(n1,m2)
+		third_quad = solveBoard(n2,m1)
+		fourth_quad = solveBoard(n2,m2)
+		
+		first_quad.two_link(second_quad)
+		third_quad.two_link(fourth_quad)
+		first_quad.two_link(third_quad)
+		return first_quad
 
 
 sol = solveBoard(3,16)

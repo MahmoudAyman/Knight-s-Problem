@@ -73,6 +73,11 @@ class Board(object):
 			self.colorMatrix[i]=self.colorMatrix[i]+B.colorMatrix[i]
 		self.cols+=B.cols
 
+		if (self.rows == 4) and (self.cols!=5):
+			self.startPos=(self.startPos[0]+2,self.startPos[1]+1)
+			self.endPos=(self.endPos[0]+1,self.endPos[1]+2)
+
+
 
 			
 

@@ -11,7 +11,7 @@ def lookUp(n,m, mode):
 	takes a dimensions (n,m) and returns a solveBoardd matrix of the same size
 	returns nxm matrix
 	'''
-	print("lookUp: ", n, m,mode)
+	# print("lookUp: ", n, m,mode)
 	if not((n,m) in base_cases.keys()):
 		print("Solution not found")
 		return None
@@ -118,26 +118,35 @@ def solveBoard(n,m):
 			else:
 				return temp1
 	#CASE5
-	elif ((5>10) and (m>10)):
-		n2 = (math.floor(n/4)*2)+(n%2)
-		n1 = n-n1
-		m2 = (math.floor(m/4)*2)+(m%2)
-		m1 = m-m1
+	elif ((n>10) and (m>10)):
+		n2 = int(math.floor(n/4)*2)+(n%2)
+		n1 = n-n2
+		m2 = int(math.floor(m/4)*2)+(m%2)
+		m1 = m-m2
 		first_quad = solveBoard(n1,m1)
 		second_quad = solveBoard(n1,m2)
 		third_quad = solveBoard(n2,m1)
 		fourth_quad = solveBoard(n2,m2)
-		
-		first_quad.two_link(second_quad)
-		third_quad.two_link(fourth_quad)
-		first_quad.two_link(third_quad)
+
+		if ((first_quad==None) or (second_quad==None) or (third_quad==None) or (fourth_quad==None)):
+			print("solution not found")
+			return None
+
+		# print(first_quad)data[i][j]
+		# print('ss')
+		first_quad.quad_link(second_quad,third_quad,fourth_quad)
 		return first_quad
 
 
-sol = solveBoard(6,18)
+sol = solveBoard(16,16)
 print(sol)
-# print(sol.forward_links)
-# print(sol.backward_links)
+print(sol.forward_links)
+print(sol.backward_links)
+
+#c = lookUp(3,4,'s')
+# print(c)
+# c.transpose()
+# print(c)
 # print(sol.startPos, sol.endPos)
 # print(sol.forward_links)
 # print(sol.backward_links)

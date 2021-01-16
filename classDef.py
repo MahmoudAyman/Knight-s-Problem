@@ -86,10 +86,11 @@ class Board(object):
 			print("quad_link is invalid")
 			return None
 		self.two_link(B)
+		C.transpose()
 		C.two_link(D)
 		
-		self.forward_links.append(((self.rows-2,0),(C.endPos[0]+self.rows,C.endPos[1])))
-		self.backward_links.append(((C.endPos[0]+self.rows,C.endPos[1]),(self.rows -1,2)))
+		self.forward_links.append([self.rows-2,0,C.endPos[0]+self.rows,C.endPos[1]])
+		self.backward_links.append([C.startPos[0]+self.rows,C.startPos[1],self.rows -1,2])
 
 		for i in C.forward_links:
 			i[0]+=self.rows
@@ -104,7 +105,19 @@ class Board(object):
 		for i in C.dataMatrix:
 			#print (i)
 			self.dataMatrix.append(i)
-		self.row+=C.rows
+		self.rows+=C.rows
+
+	def transpose(self):
+		data = self.dataMatrix
+		data_transposed = list(map(list, zip(*data)))
+		self.dataMatrix = deepcopy(data_transposed)
+		cols = self.cols
+		self.cols = self.rows
+		self.rows = cols
+		st = self.startPos
+		self.startPos = (st[1],st[0])
+		en = self.endPos
+		self.endPos = (en[1],en[0])
 
 
 
@@ -121,28 +134,4 @@ class Board(object):
 		return out
 
 
-three_by_five = [[1,4,7,10],
-				 [12,9,2,5],
-				 [3,6,11,8]]
 
-three_by_five2 = [[0,0,0,0],
-				 [12,9,2,5],
-				 [3,6,11,8]]
-
-# b1 = Board(3,4,(0,0),(1,0),three_by_five)
-# b2 = Board(3,4,(0,0),(1,0),three_by_five)
-# b3 = Board(3,4,(1,1),(1,0),three_by_five2)
-# b4 = Board(3,4,(0,0),(1,0),three_by_five2)
-# #print(b1==b3)
-# b1.quad_link(b2,b3,b4)
-
-#b1.quad_link(b2,b3,b4)
-#print(b1)
-# print(b3)
-# print(b1.forward_links)
-# print(b1.backward_links)
-#print(b1.colorMatrix)
-# print(b1.index)
-# print(b2.index)
-# print(b3.index)
-# print(b4.index)

@@ -330,4 +330,3 @@ base_cases = {(3,8):[None,streched_3_8,None],
               (6,10):[closed_6_10,stretched_6_10,None],
               (10,6):[None,stretched_10_6,None],
               }
-print(len(base_cases))
